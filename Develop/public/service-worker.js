@@ -7,15 +7,14 @@ const FILES_TO_CACHE = [
   "/favicon.ico",
   "/manifest.json",
   "/public/style.css",
+  "/public/icons/icon-192x192.png",
+  "/public/icons/icon-512x512.png",
  
 ];
 
 // install
 self.addEventListener("install", function (evt) {
-  // pre cache image data
-//   evt.waitUntil(
-//     caches.open(DATA_CACHE_NAME).then((cache) => cache.add("/api/images"))
-//   );
+  
     
   // pre cache all static assets
   evt.waitUntil(

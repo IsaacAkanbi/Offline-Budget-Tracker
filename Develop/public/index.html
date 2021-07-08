@@ -44,7 +44,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script src="db.js"></script>
+  
   <script src="index.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
@@ -54,6 +54,18 @@
         });
       });
     }
+  </script>
+  <script>
+    const request = window.indexedDB.open("budget", 1);
+
+    request.onsuccess = event => {
+      console.log(request.result);
+    };
+
+    request.onupgradeneeded = ({ target }) => {
+      const db = target.result;
+      const objectStore = db.createObjectStore("budget");
+    };
   </script>
 </body>
 </html>
