@@ -44,7 +44,17 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  
+
+  <script src="db.js">   
+
+// in your db.js:
+// -- you'll need an request.onerror
+// -- a saveRecord function
+// -- you'll need to have a way to check your database (possibly a function that does this)
+// ------ accounting for whether its online or not
+
+  </script>
+
   <script src="index.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
@@ -55,17 +65,6 @@
       });
     }
   </script>
-  <script>
-    const request = window.indexedDB.open("budget", 1);
-
-    request.onsuccess = event => {
-      console.log(request.result);
-    };
-
-    request.onupgradeneeded = ({ target }) => {
-      const db = target.result;
-      const objectStore = db.createObjectStore("budget");
-    };
-  </script>
+  
 </body>
 </html>
