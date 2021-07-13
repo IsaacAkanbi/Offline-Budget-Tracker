@@ -5,7 +5,7 @@ let db;
 let budgetVersion;
 
 // Create a new db request for a "budget" database.
-const request = window.indexedDB.open('budget', budgetVersion || 21);
+const request = indexedDB.open('BudgetDB', budgetVersion || 21);
 
 request.onupgradeneeded = function (e) {
   console.log('Upgrade needed in IndexDB');
@@ -42,7 +42,7 @@ function checkDatabase() {
   getAll.onsuccess = function () {
     // If there are items in the store, we need to bulk add them when we are back online
     if (getAll.result.length > 0) {
-      fetch('/api/transaction', {
+      fetch('/api/transaction/bulk', {
         method: 'POST',
         body: JSON.stringify(getAll.result),
         headers: {
@@ -59,7 +59,8 @@ function checkDatabase() {
 
             // Assign the current store to a variable
             const currentStore = transaction.objectStore('BudgetStore');
-
+            currentStore.clear();
+            console.log("clearing store");
           }
         });
     }
